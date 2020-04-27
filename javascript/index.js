@@ -13,7 +13,7 @@ $(() => {
     .text("Close")
     .addClass("modal-buttons");
 
-  const $headerModal = $("<h1>").text("Introduction to running a Lemonade Stand");
+  const $headerModal = $("<h1>").text("Running a Lemonade Stand");
 
   const $firstP = $(
     "<p>Your goal is to make as much money as you can in 7, 14, or 30 days by selling lemonade at your lemonade stand. </p>"
