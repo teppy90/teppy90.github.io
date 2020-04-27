@@ -1,6 +1,3 @@
-// console.log($);
-console.log("modal practice app.js is linked to this index.html");
-
 $(() => {
   //write your code here
   const $openModalButton = $("<button>")
@@ -16,19 +13,25 @@ $(() => {
     .text("Close")
     .addClass("modal-buttons");
 
-  const $headerModal = $("<h1>").text("Learn to play Bridge");
+  const $headerModal = $("<h1>").text("Introduction to running a Lemonade Stand");
 
   const $firstP = $(
-    "<p>Bridge is played with four people sitting at a card table using a standard deck of 52 cards (no jokers). The players across from each other form partnerships as North‑South and East‑West.</p>"
+    "<p>Your goal is to make as much money as you can in 7, 14, or 30 days by selling lemonade at your lemonade stand. </p>"
   );
 
   const $secondP = $(
-    "<p>Draw cards to select the person to deal the cards (the dealer). This person distributes the cards face down, in clockwise rotation one at a time, until each player at the table has a hand consisting of 13 cards. </p>"
+    "<p>Buy cups, lemons, sugar, and ice cubes, then set your recipe based on the weather and conditions.  </p>"
   );
 
   const $thirdP = $(
-    "<p>After the play of each deal is completed, the opportunity to deal moves around the table clockwise so that each person has a turn to deal out the cards.</p>"
-  );
+    "<p>Start with the basic recipe, but try to vary the recipe and see if you can do better. Lastly, set your price and sell your lemonade at the stand.</p>"
+  );  
+
+  const $fourthP = $(
+    "<p>Try changing up the price based on the weather conditions as well. At the end of the game, you'll see how much money you made. Write it down and play again to try and beat your score!</p>"
+  );  
+
+  
 
   const $modalTextbox = $("<div>").attr("id", "modal-textbox");
   $divModal.append($modalTextbox);
@@ -38,7 +41,8 @@ $(() => {
     .append($headerModal)
     .append($firstP)
     .append($secondP)
-    .append($thirdP);
+    .append($thirdP)
+    .append($fourthP);
 
   // Grabbing About the Game button
   const $openBtn = $("#openModal");
