@@ -1,5 +1,5 @@
 $(() => {
-  //write your code here
+
   const $openModalButton = $("<button>")
     .attr("id", "openModal")
     .text("About the Game")
@@ -74,17 +74,13 @@ $(() => {
   $modalTextbox.append($footerDiv);
   $footerDiv.append($("#close"));
 
-  // Move the Close button to the bottom of the text box and wrap it in a div to make it easier to style. Give the <div> an id of modal-footer.
 
-  // <div id="modal-footer">
-  // <a id="close" href="#">Close</a>
-  // </div>
 $('#weatherShow').click(function() {
-  $('#weatherDiv').css('display','block');
+  $('#weatherDiv').hide();
 });
 
 $('#weatherHide').click(function() {
-  $('#weatherDiv').css('display','none');
+  $('#weatherDiv').show();
 });
 
 $('#inventoryShow').click(function() {
