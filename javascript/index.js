@@ -16,7 +16,7 @@ $(() => {
   const $headerModal = $("<h1>").text("Running a Lemonade Stand");
 
   const $firstP = $(
-    "<p>Your goal is to make as much money as you can in 7, 14, or 30 days by selling lemonade at your lemonade stand. </p>"
+    "<p>Your goal is to make as much money as you can in 3 hours by selling lemonade at your lemonade stand. </p>"
   );
 
   const $secondP = $(
@@ -79,4 +79,13 @@ $(() => {
   // <div id="modal-footer">
   // <a id="close" href="#">Close</a>
   // </div>
+$('#divShow').click(function() {
+  $('#Mydiv').css('display','block');
+});
+
+$('#divHide').click(function() {
+  $('#Mydiv').css('display','none');
+});
+
+
 });
