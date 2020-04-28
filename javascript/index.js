@@ -79,12 +79,28 @@ $(() => {
   // <div id="modal-footer">
   // <a id="close" href="#">Close</a>
   // </div>
-$('#divShow').click(function() {
-  $('#Mydiv').css('display','block');
+$('#weatherShow').click(function() {
+  $('#weatherDiv').css('display','block');
 });
 
-$('#divHide').click(function() {
-  $('#Mydiv').css('display','none');
+$('#weatherHide').click(function() {
+  $('#weatherDiv').css('display','none');
+});
+
+$('#inventoryShow').click(function() {
+  $('#inventoryDiv').css('display','block');
+});
+
+$('#inventoryHide').click(function() {
+  $('#inventoryDiv').css('display','none');
+});
+
+$('#storeShow').click(function() {
+  $('#storeDiv').css('display','block');
+});
+
+$('#storeHide').click(function() {
+  $('#storeDiv').css('display','none');
 });
 
 
