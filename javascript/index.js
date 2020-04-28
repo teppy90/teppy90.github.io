@@ -1,5 +1,11 @@
 $(() => {
 
+  //getting weather
+  $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Singapore&APPID=944cf602c3a4cb7dffdd3923492518c2", function(data){
+    console.log(data);
+
+  });
+
   const $openModalButton = $("<button>")
     .attr("id", "openModal")
     .text("About the Game")
