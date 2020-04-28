@@ -70,7 +70,7 @@ $(() => {
 
   $closeBtn.on("click", closeModal);
 
-  setTimeout(openModal, 5000);
+  setTimeout(openModal, 5);
 
   const $footerDiv = $("<div>").attr("id", "modal-footer");
 
