@@ -14,6 +14,7 @@
     <script src="javascript/index.js"></script>
   </head>
   <body>
+
     <div id="weatherDiv" class="container" style="display:none; border-style:solid;">
       <h1>Weather</h1>
       <button id="weatherHide">Hide Weather</button>
@@ -29,9 +30,6 @@
       </div>
 
       <div id="show"></div>
-
-
-
     </div>
 
     <div id="inventoryDiv" style="display:none; border-style:solid;">
@@ -39,20 +37,21 @@
 
       <form action="/action_page.php">
         <label for="lemonQuantity">Number of lemons (between 1 and 5):</label>
-        <input type="number" id="quantity" name="quantity" min="1" max="5">
+        <input type="number" id="numberOfLemons" name="quantity" min="1" max="5">
         <input type="submit">
       </form>
       <form action="/action_page.php">
         <label for="sugarQuantity">Number of sugar cubes (between 1 and 5):</label>
-        <input type="number" id="quantity" name="quantity" min="1" max="5">
+        <input type="number" id="numberOfSugarCubes" name="quantity" min="1" max="5">
         <input type="submit">
       </form>
       <form action="/action_page.php">
         <label for="iceQuantity">Number of ice cubes (between 1 and 5):</label>
-        <input type="number" id="quantity" name="quantity" min="1" max="5">
+        <input type="number" id="numberOfIceCubes" name="quantity" min="1" max="5">
         <input type="submit">
       </form>
 
+      <button id="costOfOneCup" class="btn btn-primary">Cost of one cup of Lemonade</button>
 
       <button id="inventoryHide">Hide Inventory</button>
     </div>

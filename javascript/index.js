@@ -2,7 +2,7 @@
 
 $(() => {
 
-
+  //about the game (i used the modal tutorial but will probably change it to creating it in html for code readability)
   const $openModalButton = $("<button>")
     .attr("id", "openModal")
     .text("About the Game")
@@ -63,7 +63,7 @@ $(() => {
   const closeModal = () => {
     $modal.css("display", "none");
   };
-
+  
   $openBtn.on("click", openModal);
 
   // Event handler to close the modal
@@ -108,7 +108,20 @@ function show(data){
   return '<h3><strong>Weather</strong>: '+ data.weather[0].main +'</h3>'
 }
 
+//calculating the cost of a cup based on how many lemons, sugar cubes, ice cubes
 
+const costOfOneCup = () => {
+   let costOfLemons = parseFloat.$('#numberOfLemons').val()
+   let costOfSugarCubes = parseFloat.$('#numberOfSugarCubes').val()
+   let costofIceCubes = parseFloat.$('numberOfIceCubes').val();
+}
+
+const $calculateCostOfOneCup = $("#costOfOneCup");
+  
+$calculateCostOfOneCup.on("click", costOfOneCup());;
+
+
+//hide/show the different pages
 $('#weatherShow').click(function() {
   $('#weatherDiv').css('display','block');
 });
