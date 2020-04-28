@@ -110,15 +110,15 @@ function show(data){
 
 //calculating the cost of a cup based on how many lemons, sugar cubes, ice cubes
 
-const costOfOneCup = () => {
-   let costOfLemons = parseFloat.$('#numberOfLemons').val()
-   let costOfSugarCubes = parseFloat.$('#numberOfSugarCubes').val()
-   let costofIceCubes = parseFloat.$('numberOfIceCubes').val();
-}
+// const costOfOneCup = () => {
+//    let costOfLemons = parseFloat.$('#numberOfLemons').val()
+//    let costOfSugarCubes = parseFloat.$('#numberOfSugarCubes').val()
+//    let costofIceCubes = parseFloat.$('numberOfIceCubes').val();
+// }
 
-const $calculateCostOfOneCup = $("#costOfOneCup");
+// const $calculateCostOfOneCup = $("#costOfOneCup");
   
-$calculateCostOfOneCup.on("click", costOfOneCup());;
+// $calculateCostOfOneCup.on("click", costOfOneCup());;
 
 
 //hide/show the different pages
