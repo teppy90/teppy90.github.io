@@ -82,11 +82,11 @@ $(() => {
 
 
 $('#weatherShow').click(function() {
-  $('#weatherDiv').hide();
+  $('#weatherDiv').css('display','block');
 });
 
 $('#weatherHide').click(function() {
-  $('#weatherDiv').show();
+  $('#weatherDiv').css('display','none');
 });
 
 $('#inventoryShow').click(function() {
@@ -107,3 +107,50 @@ $('#storeHide').click(function() {
 
 
 });
+
+
+// const fetchData = (borough) => {
+//   borough = borough.toUpperCase();
+//   $.ajax({
+//     url: "https://data.cityofnewyork.us/resource/erm2-nwe9.json",
+//     data: {
+//       $limit: $("#input-box").val(),
+//       $$app_token: config.appToken,
+//       agency: "NYPD",
+//       borough: borough
+//     }
+//   }).then((data) => {
+//     renderResults(data);
+//   });
+// };
+
+// /**
+//  *
+//  * @param {array} data
+//  */
+// const renderResults = (data) => {
+//   $("#results-panel").empty();
+//   data.forEach((dataObject) => {
+//     const $dataRow = $("<div>").addClass("row");
+//     const $dataCell = $("<li>")
+//       .addClass("datacell")
+//       .text(dataObject.descriptor);
+//     const $actionButton = $("<button>")
+//       .addClass("action-button")
+//       .text("what did the police do?")
+//       .on("click", (event) => {
+//         $(event.target).parent().children().eq(2).toggle();
+//       });
+//     const $policeResponse = $("<div>")
+//       .addClass("police-response")
+//       .text(dataObject.resolution_description)
+//       .hide();
+//     $dataRow
+//       .appendTo($("#results-panel"))
+//       .append($dataCell, $actionButton, $policeResponse);
+//   });
+// };
+
+// $(function () {
+//   renderApp();
+// });

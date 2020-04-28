@@ -16,11 +16,36 @@
   <body>
     <div id="weatherDiv" style="display:none; border-style:solid;">
       <h1>Weather</h1>
+
+      <div class="weather-container">
+        <img class="icon">
+        <p class="weather"></p>
+        <p class="temp"></p>
+      </div>
+
       <button id="weatherHide">Hide Weather</button>
     </div>
 
     <div id="inventoryDiv" style="display:none; border-style:solid;">
       <h1>Inventory</h1>
+
+      <form action="/action_page.php">
+        <label for="lemonQuantity">Number of lemons (between 1 and 5):</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="5">
+        <input type="submit">
+      </form>
+      <form action="/action_page.php">
+        <label for="sugarQuantity">Number of sugar cubes (between 1 and 5):</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="5">
+        <input type="submit">
+      </form>
+      <form action="/action_page.php">
+        <label for="iceQuantity">Number of ice cubes (between 1 and 5):</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="5">
+        <input type="submit">
+      </form>
+
+
       <button id="inventoryHide">Hide Weather</button>
     </div>
 
