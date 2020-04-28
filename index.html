@@ -14,16 +14,24 @@
     <script src="javascript/index.js"></script>
   </head>
   <body>
-    <div id="weatherDiv" style="display:none; border-style:solid;">
+    <div id="weatherDiv" class="container" style="display:none; border-style:solid;">
       <h1>Weather</h1>
-
-      <div class="weather-container">
-        <img class="icon">
-        <p class="weather"></p>
-        <p class="temp"></p>
+      <button id="weatherHide">Hide Weather</button>
+    
+      <div class="row" style="margin-bottom:20px;">
+        <h3 class="text-center text-primary">Enter City Name</h3>
+        <span id="error"></span>
       </div>
 
-      <button id="weatherHide">Hide Weather</button>
+      <div class="row form-group form-inline" id="rowDiv">
+          <input type ="text" name="city" id="city" class="form-control" placeholder="City Name">
+          <button id="generateWeather" class="btn btn-primary">Search City</button>
+      </div>
+
+      <div id="show"></div>
+
+
+
     </div>
 
     <div id="inventoryDiv" style="display:none; border-style:solid;">

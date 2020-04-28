@@ -1,10 +1,7 @@
+
+
 $(() => {
 
-  //getting weather
-  $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Singapore&APPID=944cf602c3a4cb7dffdd3923492518c2", function(data){
-    console.log(data);
-
-  });
 
   const $openModalButton = $("<button>")
     .attr("id", "openModal")
@@ -80,6 +77,37 @@ $(() => {
   $modalTextbox.append($footerDiv);
   $footerDiv.append($("#close"));
 
+//getting weather
+
+$('#generateWeather').click(function(){
+  let city = $('#city').val();
+
+  if(city != ''){
+
+    $.ajax({
+
+      url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&APPID=944cf602c3a4cb7dffdd3923492518c2',
+      type: 'GET',
+      dataType: 'jsonp',
+      success: function(data){
+         const widget = show(data);
+
+         $('#show').html(widget);
+         $('#city').val('');
+      }
+
+    })
+
+  } else {
+    $('error').html('Field cannot be empty');
+  }
+
+});
+ 
+function show(data){
+  return '<h3><strong>Weather</strong>: '+ data.weather[0].main +'</h3>'
+}
+
 
 $('#weatherShow').click(function() {
   $('#weatherDiv').css('display','block');
@@ -108,49 +136,3 @@ $('#storeHide').click(function() {
 
 });
 
-
-// const fetchData = (borough) => {
-//   borough = borough.toUpperCase();
-//   $.ajax({
-//     url: "https://data.cityofnewyork.us/resource/erm2-nwe9.json",
-//     data: {
-//       $limit: $("#input-box").val(),
-//       $$app_token: config.appToken,
-//       agency: "NYPD",
-//       borough: borough
-//     }
-//   }).then((data) => {
-//     renderResults(data);
-//   });
-// };
-
-// /**
-//  *
-//  * @param {array} data
-//  */
-// const renderResults = (data) => {
-//   $("#results-panel").empty();
-//   data.forEach((dataObject) => {
-//     const $dataRow = $("<div>").addClass("row");
-//     const $dataCell = $("<li>")
-//       .addClass("datacell")
-//       .text(dataObject.descriptor);
-//     const $actionButton = $("<button>")
-//       .addClass("action-button")
-//       .text("what did the police do?")
-//       .on("click", (event) => {
-//         $(event.target).parent().children().eq(2).toggle();
-//       });
-//     const $policeResponse = $("<div>")
-//       .addClass("police-response")
-//       .text(dataObject.resolution_description)
-//       .hide();
-//     $dataRow
-//       .appendTo($("#results-panel"))
-//       .append($dataCell, $actionButton, $policeResponse);
-//   });
-// };
-
-// $(function () {
-//   renderApp();
-// });
