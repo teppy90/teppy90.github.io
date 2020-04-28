@@ -86,7 +86,7 @@ $('#generateWeather').click(function(){
 
     $.ajax({
 
-      url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&APPID=944cf602c3a4cb7dffdd3923492518c2',
+      url: 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&APPID=944cf602c3a4cb7dffdd3923492518c2',
       type: 'GET',
       dataType: 'jsonp',
       success: function(data){
