@@ -1,73 +1,19 @@
-
-
 $(() => {
+//about the game
 
-  //about the game (i used the modal tutorial but will probably change it to creating it in html for code readability)
-  const $openModalButton = $("<button>")
-    .attr("id", "openModal")
-    .text("About the Game")
-    .addClass("modal-buttons");
-  $("body").append($openModalButton);
-  const $divModal = $("<div>").attr("id", "modal");
-  $("body").append($divModal);
-  const $anchorModal = $("<button>")
-    .attr("id", "close")
-    .attr("href", "#")
-    .text("Close")
-    .addClass("modal-buttons");
-
-  const $headerModal = $("<h1>").text("Running a Lemonade Stand");
-
-  const $firstP = $(
-    "<p>Your goal is to make as much money as you can in 3 hours by selling lemonade at your lemonade stand. </p>"
-  );
-
-  const $secondP = $(
-    "<p>Buy cups, lemons, sugar, and ice cubes, then set your recipe based on the weather and conditions.  </p>"
-  );
-
-  const $thirdP = $(
-    "<p>Start with the basic recipe, but try to vary the recipe and see if you can do better. Lastly, set your price and sell your lemonade at the stand.</p>"
-  );  
-
-  const $fourthP = $(
-    "<p>Try changing up the price based on the weather conditions as well. At the end of the game, you'll see how much money you made. Write it down and play again to try and beat your score!</p>"
-  );  
-
-  
-
-  const $modalTextbox = $("<div>").attr("id", "modal-textbox");
-  $divModal.append($modalTextbox);
-
-  $modalTextbox
-    .append($anchorModal)
-    .append($headerModal)
-    .append($firstP)
-    .append($secondP)
-    .append($thirdP)
-    .append($fourthP);
-
-  // Grabbing About the Game button
+  const $modalTextbox = $('#modal-textbox');
   const $openBtn = $("#openModal");
-
-  // Grabbing modal element
   const $modal = $("#modal");
-
-  // Grabbing close button
   const $closeBtn = $("#close");
 
   const openModal = () => {
     $modal.css("display", "block");
   };
-
   const closeModal = () => {
     $modal.css("display", "none");
   };
   
   $openBtn.on("click", openModal);
-
-  // Event handler to close the modal
-
   $closeBtn.on("click", closeModal);
 
   setTimeout(openModal, 5);
@@ -86,39 +32,99 @@ $('#generateWeather').click(function(){
 
     $.ajax({
 
-      url: 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&APPID=944cf602c3a4cb7dffdd3923492518c2',
+      url: 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric' + '&APPID=944cf602c3a4cb7dffdd3923492518c2',
       type: 'GET',
       dataType: 'jsonp',
       success: function(data){
          const widget = show(data);
 
          $('#show').html(widget);
-         $('#city').val('');
+        
       }
-
     })
 
   } else {
     $('error').html('Field cannot be empty');
   }
-
-});
- 
+   
 function show(data){
-  return '<h3><strong>Weather</strong>: '+ data.weather[0].main +'</h3>'
+  return "<h3 style='font-size:40px; font-weight: bold;' class='text-center'> Current Weather for " + data.name + ", " + data.sys.country + "</h3>" +
+         "<h3><strong>Weather</strong>: "+ data.weather[0].main +"</h3>" +
+         "<h3>Description " + data.weather[0].description + "</h3>" +
+         "<h3>Temperature " + data.main.temp + "&deg;C</h3>"
 }
 
 //calculating the cost of a cup based on how many lemons, sugar cubes, ice cubes
+  const totalCost = () => {
+    const $costOfLemons = $('#numberOfLemons').val() * 0.5;
+    const $costOfSugarCubes = $('#numberOfSugarCubes').val() * 0.5;
+    const $costofIceCubes = $('#numberOfIceCubes').val() * 0.5;
+    const $costOfACup = $costOfLemons + $costOfSugarCubes + $costofIceCubes;
+    alert ("A cup of your lemonade costs " + $costOfACup + " to produce.");
+  }
 
-// const costOfOneCup = () => {
-//    let costOfLemons = parseFloat.$('#numberOfLemons').val()
-//    let costOfSugarCubes = parseFloat.$('#numberOfSugarCubes').val()
-//    let costofIceCubes = parseFloat.$('numberOfIceCubes').val();
-// }
-
-// const $calculateCostOfOneCup = $("#costOfOneCup");
+  const $costOfOneCup = $('#costOfOneCup')
+  $costOfOneCup.on("click", totalCost);
   
-// $calculateCostOfOneCup.on("click", costOfOneCup());;
+});
+
+//running store (taking the probability of selling a cup to calculate revenue)
+//calculating the ingredients factor
+const probabilityOfIngredients = () => {
+  const $lemonProbability = $('#numberOfLemons').val() * 0.03;
+  const $sugarProbability = $('#numberOfSugarCubes').val() * 0.03;
+  const $iceProbability = $('#numberOfIceCubes').val() * 0.03;
+  const ingredientsProbability = $lemonProbability + $sugarProbability + $iceProbability;
+  
+  return (ingredientsProbability);
+}
+
+const numberOfCustomers = 200
+const priceOfACup = 2 //this will be made into something set by user  
+
+$('#calculateRevenue').click(function(){
+  let city = $('#city').val();
+  
+  if(city != ''){
+
+    $.ajax({
+
+      url: 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric' + '&APPID=944cf602c3a4cb7dffdd3923492518c2',
+      type: 'GET',
+      dataType: 'jsonp',
+      success: function(data){
+        const widget = show(data);
+
+        $('#showResults').html(widget);
+      
+      } 
+    }) 
+
+  } else {
+    $('error').html('Field cannot be empty');
+  }
+function show(data){
+  let currentTemperature = data.main.temp;
+  let weatherProbability = 0;
+
+  if (currentTemperature < 20) {
+  weatherProbability = .3;
+  } else if (currentTemperature >= 20 && currentTemperature < 25) {
+  weatherProbability = .35;
+
+  } else if (currentTemperature >= 25 && currentTemperature < 30) {
+  weatherProbability = .40;
+
+  } else if(currentTemperature >= 30 && currentTemperature < 35) {
+  weatherProbability = .45;
+  } 
+
+  let totalRevenue = (weatherProbability + probabilityOfIngredients()) * numberOfCustomers * priceOfACup; 
+  
+    return "<h3>Congratulations! You made $" + totalRevenue + " today.\n" + 
+             ((weatherProbability + probabilityOfIngredients()) * numberOfCustomers) + " out of 200 customers bought a cup!" + "</h3>"
+  }      
+});
 
 
 //hide/show the different pages
@@ -146,6 +152,4 @@ $('#storeHide').click(function() {
   $('#storeDiv').css('display','none');
 });
 
-
 });
-
