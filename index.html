@@ -4,88 +4,136 @@
     <meta charset="utf-8" />
     <title>Lemonade Stand</title>
     <!-- CSS Links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/index.css" />
     <!-- JavaScript & jQuery Links -->
 
   </head>
   <body>
 
-    <button id="openModal">About the Game</button>
-    <div id="modal">
-      <div id="modal-textbox">
-        <a id="close" href="#">Close</a>
-        <h1>Running a Lemonade Stand</h1>
-          <p>Your goal is to make as much money as you can in 3 hours by selling lemonade at your lemonade stand. </p>
-          <p>Buy cups, lemons, sugar, and ice cubes, then set your recipe based on the weather and conditions.  </p>
-          <p>Start with the basic recipe, but try to vary the recipe and see if you can do better. Lastly, set your price and sell your lemonade at the stand.</p>
-          <p>Try changing up the price based on the weather conditions as well. At the end of the game, you'll see how much money you made. Write it down and play again to try and beat your score!</p>
+<div class="container">
+    <button id="openModal">How to Play</button>
+     
+    <div class="container">
+     <div id="modal">
+      <div class="container" id="modal-textbox">
+       <a id="close" href="#">Close</a>
+       <h1>Running a Lemonade Stand</h1>
+        <p>Your goal is to make as much money as you can by selling lemonade at your lemonade stand. </p>
+        <p>Using the weather to guide you, decide how many lemons, sugar and ice cubes to flavour each cup.</p>
+        <p>Start with the basic recipe, but try to vary the recipe and see if you can do better. Lastly, set your price and sell your lemonade at the stand.</p>
+        <p>Try changing up the price based on the weather conditions as well. At the end of the game, you'll see how much money you made. Write it down and play again to try and beat your score!</p>
       </div>
+     </div>
     </div>
 
-    <div id="weatherDiv" class="container" style="display:none; border-style:solid;">
-      <h1>Weather</h1>
-      <button id="weatherHide">Hide Weather</button>
-    
-      <div class="row" style="margin-bottom:20px;">
-        <h3 class="text-center text-primary">Enter City Name</h3>
-        <span id="error"></span>
-      </div>
 
-      <div class="row form-group form-inline" id="rowDiv">
+   <div class="container">
+    <div class="row">
+      
+      <div id="weatherDiv" class="col">
+        
+        <div class="row" style="margin-bottom:20px;">
+          <h3 class="text-center text-primary">Pick your favorite city!</h3>
+          <span id="error"></span>
+        </div>
+
+        <div class="row form-group form-inline" id="rowDiv">
           <input type ="text" name="city" id="city" class="form-control" placeholder="Search by City Name">
           <button id="generateWeather" class="btn btn-primary">Generate Weather!</button>
-      </div>
+        </div>
 
-      <div id="show"></div>
-    </div>
+        <div id="show"></div>
+      </div> 
 
-    <div id="inventoryDiv" style="display:none; border-style:solid;">
-      <h1>Inventory</h1>
-
-      <form>
-        <label for="lemons">Number of lemons (between 1 and 5):</label>
-        <input type="number" id="numberOfLemons" name="quantity" min="1" max="5" value="1">
-      </form>
-      <form>
-        <label for="sugar">Number of sugar cubes (between 1 and 5):</label>
-        <input type="number" id="numberOfSugarCubes" name="quantity" min="1" max="5" value="1">
-      </form>
-      <form>
-        <label for="ice">Number of ice cubes (between 1 and 5):</label>
-        <input type="number" id="numberOfIceCubes" name="quantity" min="1" max="5" value="1">
-      </form>
-
-      <button id="costOfOneCup">Cost of one cup of Lemonade</button>
-
-      <button id="inventoryHide">Hide Inventory</button>
-    </div>
-
-    <div id="storeDiv" class="container" style="display:none; border-style:solid;">
-      <h1>Store</h1>
-      <button id="storeHide">Hide Store</button>    
+      <div id="inventoryDiv" class="col">
+        <h1>Inventory</h1>
+        <button id="costOfOneCup">Cost of one cup of Lemonade</button>
+        
+        <div class="row">
+          <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">3</span>
+          </h4>
           
-      <div class="row" style="margin-bottom:20px;">
-        <h3 class="text-center text-primary">Enter City Name</h3>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Lemons</h6>
+                <small class="text-muted">Cost of lemons</small>
+              </div>
+              <span>
+                <input type="number" id="numberOfLemons" class="text-muted" name="quantity" min="1" max="5" value="1">
+              </span>
+              <span>
+                <output type="number" class="text-muted" id="costOfLemons"></output>
+              </span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Sugar cubes</h6>
+                <small class="text-muted">Cost of sugar cubes</small>
+              </div>
+              <span>
+                <input type="number" id="numberOfSugarCubes" class="text-muted" name="quantity" min="1" max="5" value="1">
+              </span>
+              <span>
+                <output type="number" class="text-muted" id="costOfSugarCubes"></output>
+              </span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Ice cubes</h6>
+                <small class="text-muted">Cost of ice cubes</small>
+              </div>
+              <span>
+                <input type="number" id="numberOfIceCubes" class="text-muted" name="quantity" min="1" max="5" value="1">
+              </span>
+              <span>
+                <output type="number" class="text-muted" id="costOfIceCubes"></output>
+              </span>
+            </li>
+  
+            <li class="list-group-item d-flex justify-content-between">
+              <span id="totalCost">Total (USD)</span>
+            </li>
+          </ul>
+          </div>
+        </div>
+      </div>  
+
+      <div id="storeDiv" class="col">
+        <h1>Store</h1>
+        <div class="row" style="margin-bottom:20px;">
+        <h3 class="text-center text-primary"></h3>
         <span id="errorStore"></span>
-      </div>
+        </div>
 
-      <div class="row form-group form-inline" id="storeDiv">
+        <span> Set price of a cup
+          <input type="number" id="priceSetting" class="text-muted" name="quantity" min="1" max="2" value="1" step="0.1">
+        </span>
+
+        <div class="row form-group form-inline" id="storeDiv">
         <button id="calculateRevenue">Run Store!</button>
-      </div>
+        </div>
       
-      <div id="showResults"></div>
-
+        <div id="showResults"></div>
+      </div>
     </div>
+   </div>
+</div>  
 
-      <button id="weatherShow">Show Weather</button>    
-      <button id="inventoryShow">Show Inventory</button>  
-      <button id="storeShow">Show Store</button>  
-
-      <script
+    <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"
     ></script>
+    
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="javascript/index.js"></script>
   </body>
 </html>

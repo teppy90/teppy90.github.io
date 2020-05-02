@@ -1,11 +1,11 @@
 $(() => {
 //about the game
 
-  const $modalTextbox = $('#modal-textbox');
-  const $openBtn = $("#openModal");
-  const $modal = $("#modal");
-  const $closeBtn = $("#close");
-
+const $openBtn = $("#openModal");
+const $modalTextbox = $('#modal-textbox');
+const $modal = $("#modal");
+const $closeBtn = $("#close");
+  
   const openModal = () => {
     $modal.css("display", "block");
   };
@@ -58,9 +58,10 @@ function show(data){
   const totalCost = () => {
     const $costOfLemons = $('#numberOfLemons').val() * 0.5;
     const $costOfSugarCubes = $('#numberOfSugarCubes').val() * 0.5;
-    const $costofIceCubes = $('#numberOfIceCubes').val() * 0.5;
-    const $costOfACup = $costOfLemons + $costOfSugarCubes + $costofIceCubes;
-    alert ("A cup of your lemonade costs " + $costOfACup + " to produce.");
+    const $costOfIceCubes = $('#numberOfIceCubes').val() * 0.5;
+    const $costOfACup = "<h3>" + ($costOfLemons + $costOfSugarCubes + $costOfIceCubes) + "</h3>";;
+    $('#totalCost').html($costOfACup)
+
   }
 
   const $costOfOneCup = $('#costOfOneCup')
@@ -79,8 +80,24 @@ const probabilityOfIngredients = () => {
   return (ingredientsProbability);
 }
 
-const numberOfCustomers = 200
-const priceOfACup = 2 //this will be made into something set by user  
+const priceSettingProbability = () => {
+    let priceProbability = 0;
+
+    if ($('#priceSetting').val() < 1.25) {
+    priceProbability = -0.1;
+  } else if ($('#priceSetting').val() >= 1.25 && $('#priceSetting').val() < 1.51) {
+    priceProbability = -0.2;
+  } else if ($('#priceSetting').val() >= 1.51 && $('#priceSetting').val() < 1.75) {
+    priceProbability = -0.3;
+  } else if ($('#priceSetting').val() >= 1.75 && $('#priceSetting').val() < 2.01) {
+    priceProbability = -0.4;
+  }  
+    return (priceProbability);
+  }
+    
+
+const $priceOfACup = $('#priceSetting').val();
+const numberOfCustomers = 200    
 
 $('#calculateRevenue').click(function(){
   let city = $('#city').val();
@@ -119,37 +136,11 @@ function show(data){
   weatherProbability = .45;
   } 
 
-  let totalRevenue = (weatherProbability + probabilityOfIngredients()) * numberOfCustomers * priceOfACup; 
+  let totalRevenue = (weatherProbability + probabilityOfIngredients() + priceSettingProbability()) * numberOfCustomers * $priceOfACup; 
   
-    return "<h3>Congratulations! You made $" + totalRevenue + " today.\n" + 
+    return "<h3>Congratulations! You made $" + Math.round(totalRevenue) + " today.\n" + 
              ((weatherProbability + probabilityOfIngredients()) * numberOfCustomers) + " out of 200 customers bought a cup!" + "</h3>"
   }      
-});
-
-
-//hide/show the different pages
-$('#weatherShow').click(function() {
-  $('#weatherDiv').css('display','block');
-});
-
-$('#weatherHide').click(function() {
-  $('#weatherDiv').css('display','none');
-});
-
-$('#inventoryShow').click(function() {
-  $('#inventoryDiv').css('display','block');
-});
-
-$('#inventoryHide').click(function() {
-  $('#inventoryDiv').css('display','none');
-});
-
-$('#storeShow').click(function() {
-  $('#storeDiv').css('display','block');
-});
-
-$('#storeHide').click(function() {
-  $('#storeDiv').css('display','none');
 });
 
 });
