@@ -108,6 +108,9 @@ $(() => {
   const numberOfCustomers = 200    
   
   $('#calculateRevenue').click(function(){
+    event.preventDefault();
+    event.stopPropagation();
+        
     let city = $('#city').val();
     
     if(city != ''){
@@ -121,9 +124,8 @@ $(() => {
           const widget = show(data);
   
           $('#showResults').html(widget);
-          event.stopPropagation();
-          event.preventDefault();
-        
+          
+     
         } 
       }) 
   
@@ -147,6 +149,15 @@ $(() => {
     } 
   
     let totalRevenue = (weatherProbability + probabilityOfIngredients() + priceSettingProbability()) * numberOfCustomers * $priceOfACup; 
+    
+    let scoreTable = [];
+    let scores = {
+      id: $('#userName').val(),
+      score: Math.round(totalRevenue),
+    }
+
+    scoreTable.push(scores)
+
     
       return "<p>Congratulations! You made $" + Math.round(totalRevenue) + " today.\n" + 
                ((weatherProbability + probabilityOfIngredients()) * numberOfCustomers) + " out of 200 customers bought a cup!" + "</p>"
