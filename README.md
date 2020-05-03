@@ -30,7 +30,7 @@ The website will comprise of 4 components.
 5. Bootstrap to make the website responsive
 
 ## Difficulties / Limitation
-As I researched how to do my project, there were many features I thought were suitable. For example, using local storage to return scores after the whole process so that users could adjust inputs to optimization. Due to inexperience, code would break, for the sake of today's deadline, I'll come back to it another time and be content with the base game.
+As I researched how to do my project, there were many features I thought were suitable. For example, using local storage to return scores after the whole process so that users could adjust inputs to optimization. Code would break so for the sake of the deadline, I will be content with the base game. I will continue to do research into features to implement properly into the app.
 
 # User Stories and Wireframes
 ### WireFrame
@@ -55,3 +55,10 @@ As I researched how to do my project, there were many features I thought were su
  <br />
  1. On component 4, to be able to store results using local storage in a table.
 
+### UserStory 3
+As a parent, I would like to have the ability to introduce my child towards the variables towards running a successful business <br />
+<br />
+
+**Requirement** <br />
+<br />
+1. To be able to toggle background for app between professional and kid-friendly images.
