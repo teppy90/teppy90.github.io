@@ -204,16 +204,12 @@ $('#scoreSend').click(function(){
         score: '$' + totalRevenue,
         }  
         userScores.push(userScore);
-
-        document.querySelector('form').reset();
     
     let $pre = $('#msg pre');
         $pre.text(JSON.stringify(userScores));
-        localStorage.setItem('High Scores', JSON.stringify(userScores));
-        
-        return
-    
-        
+
+        //saving to local storage
+        localStorage.setItem('MyHighScoreList', JSON.stringify(userScores));
       }      
     });
     
