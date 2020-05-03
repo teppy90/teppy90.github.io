@@ -18,6 +18,11 @@ body {
   padding: -2px;
 }
 
+.text-muted {
+  width: 100px;
+
+}
+
 #modal {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
