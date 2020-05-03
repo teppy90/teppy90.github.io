@@ -1,4 +1,4 @@
-# Covid Interactive Website Scope
+# Lemonade Stand App
 
 ## Table of Content
 - [Project Demo](#Project-Demo)
