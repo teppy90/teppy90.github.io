@@ -94,7 +94,7 @@
            <small>Set price of a cup</small>
          </div>
          <span>
-          <input type="number" id="priceSetting" class="text-muted" name="quantity" min="1" max="2" value="1" step="0.1">
+          <input type="number" id="priceSetting" min="1" max="10" step="1">
          </span>
         </li>
       
@@ -103,11 +103,19 @@
       </div>
       
       <div id="showResults"></div>
-        <div class="row form-group form-inline">
-          <label for="userScores">Scores</label>
-          <input type="text" id="userName" placeholder="Your Name">
+       <form>
+        <div class="formBox">
+         <label for="Name">Name</label>
+         <input type="text" id="userName" placeholder="Your Name">
         </div>
-
+        <div class="formBox">
+         <label for="Score">Score</label>
+         <button id="scoreSend">Add score here</button>>
+        </div>
+        <div id="msg">
+         <pre></pre>
+        </div>
+       </form>
       </form>
     </div>
   </div>

@@ -67,6 +67,7 @@ $(() => {
         $('#totalCost').html($costOfACup)
         event.stopPropagation();
         event.preventDefault();
+        return $costOfACup
   
     }    
   
@@ -91,21 +92,21 @@ $(() => {
   const priceSettingProbability = () => {
       let priceProbability = 0;
   
-      if ($('#priceSetting').val() < 1.25) {
+      if ($('#priceSetting').val() < 1.5) {
       priceProbability = -0.1;
-    } else if ($('#priceSetting').val() >= 1.25 && $('#priceSetting').val() < 1.51) {
+    } else if ($('#priceSetting').val() >= 1.1 && $('#priceSetting').val() < 4.1) {
       priceProbability = -0.2;
-    } else if ($('#priceSetting').val() >= 1.51 && $('#priceSetting').val() < 1.75) {
+    } else if ($('#priceSetting').val() >= 4.1 && $('#priceSetting').val() < 7.1) {
       priceProbability = -0.3;
-    } else if ($('#priceSetting').val() >= 1.75 && $('#priceSetting').val() < 2.01) {
+    } else if ($('#priceSetting').val() >= 7.1 && $('#priceSetting').val() < 10.1) {
       priceProbability = -0.4;
     }  
       return (priceProbability);
     }
       
   
-  const $priceOfACup = $('#priceSetting').val();
-  const numberOfCustomers = 200    
+ 
+  
   
   $('#calculateRevenue').click(function(){
     event.preventDefault();
@@ -147,22 +148,76 @@ $(() => {
     } else if(currentTemperature >= 30 && currentTemperature < 35) {
     weatherProbability = .45;
     } 
-  
-    let totalRevenue = (weatherProbability + probabilityOfIngredients() + priceSettingProbability()) * numberOfCustomers * $priceOfACup; 
-    
-    let scoreTable = [];
-    let scores = {
-      id: $('#userName').val(),
-      score: Math.round(totalRevenue),
-    }
 
-    scoreTable.push(scores)
-
+    let numberOfCustomers = 200    
+    let $priceOfACup = $('#priceSetting').val();
+    let totalProbability = (weatherProbability + probabilityOfIngredients() + priceSettingProbability()); 
+    let totalRevenue = (totalProbability * $priceOfACup) * 200; 
     
       return "<p>Congratulations! You made $" + Math.round(totalRevenue) + " today.\n" + 
-               ((weatherProbability + probabilityOfIngredients()) * numberOfCustomers) + " out of 200 customers bought a cup!" + "</p>"
+               Math.round((weatherProbability + probabilityOfIngredients()) * numberOfCustomers) + " out of 200 customers bought a cup!" + "</p>"
     }      
   });
-  
-  });
-  
+
+//keeping track of user scores
+$('#scoreSend').click(function(){
+  event.preventDefault();
+  event.stopPropagation();
+  let city = $('#city').val();
+  if(city != ''){
+    $.ajax({
+      url: 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric' + '&APPID=944cf602c3a4cb7dffdd3923492518c2',  
+      type: 'GET',
+      dataType: 'jsonp',
+      success: function(data){
+        event.preventDefault();
+        const widget = show(data);
+        $('#msg').html(widget)
+      }
+    })
+  } else {
+    $('error').html('Field cannot be empty');
+  }
+  function show(data){
+    let currentTemperature = data.main.temp;
+    let weatherProbability = 0;
+       
+    if (currentTemperature < 20) {
+      weatherProbability = .3;
+
+    } else if (currentTemperature >= 20 && currentTemperature < 25) {
+      weatherProbability = .35;
+       
+    } else if (currentTemperature >= 25 && currentTemperature < 30) {
+      weatherProbability = .40;
+       
+    } else if(currentTemperature >= 30 && currentTemperature < 35) {
+      weatherProbability = .45;
+    } 
+    
+    let numberOfCustomers = 200    
+    let $priceOfACup = $('#priceSetting').val();
+    let totalRevenue = (weatherProbability + probabilityOfIngredients() + priceSettingProbability()) * numberOfCustomers * $priceOfACup; 
+    let userScores = [];
+    let userScore = {
+        id: $('#userName').val(),
+        score: '$' + totalRevenue,
+        }  
+        userScores.push(userScore);
+
+        document.querySelector('form').reset();
+    
+    let $pre = $('#msg pre');
+        $pre.text(JSON.stringify(userScores));
+        localStorage.setItem('High Scores', JSON.stringify(userScores));
+        
+        return
+    
+        
+      }      
+    });
+    
+    
+      
+    
+});
