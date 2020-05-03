@@ -39,30 +39,36 @@ $('#generateWeather').click(function(){
          const widget = show(data);
 
          $('#show').html(widget);
+         event.stopPropagation();
+         event.preventDefault();
         
       }
     })
 
   } else {
-    $('error').html('Field cannot be empty');
+    $('#error').html("<div id=weatherAlert class='alert alert-danger' role=alert'>Field cannot be empty</div>");
+    $('#weatherAlert').alert();
   }
    
 function show(data){
-  return "<h3 style='font-size:40px; font-weight: bold;' class='text-center'> Current Weather for " + data.name + ", " + data.sys.country + "</h3>" +
-         "<h3><strong>Weather</strong>: "+ data.weather[0].main +"</h3>" +
-         "<h3>Description " + data.weather[0].description + "</h3>" +
-         "<h3>Temperature " + data.main.temp + "&deg;C</h3>"
+  return "<p>Current Weather for " + data.name + ", " + data.sys.country + "</p>" +
+         "<li>Weather: "+ data.weather[0].main +"</li>" +
+         "<li>Description: <br> <img src='http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png'> " + data.weather[0].description + "</li>" +
+         "<li>Temperature: " + data.main.temp + "&deg;C</li>"
 }
 
 //calculating the cost of a cup based on how many lemons, sugar cubes, ice cubes
   const totalCost = () => {
-    const $costOfLemons = $('#numberOfLemons').val() * 0.5;
-    const $costOfSugarCubes = $('#numberOfSugarCubes').val() * 0.5;
-    const $costOfIceCubes = $('#numberOfIceCubes').val() * 0.5;
-    const $costOfACup = "<h3>" + ($costOfLemons + $costOfSugarCubes + $costOfIceCubes) + "</h3>";;
-    $('#totalCost').html($costOfACup)
 
-  }
+      const $costOfLemons = $('#numberOfLemons').val() * 0.5;
+      const $costOfSugarCubes = $('#numberOfSugarCubes').val() * 0.5;
+      const $costOfIceCubes = $('#numberOfIceCubes').val() * 0.5;
+      const $costOfACup = "<p>" + ($costOfLemons + $costOfSugarCubes + $costOfIceCubes) + "</p>";;
+      $('#totalCost').html($costOfACup)
+      event.stopPropagation();
+      event.preventDefault();
+
+  }    
 
   const $costOfOneCup = $('#costOfOneCup')
   $costOfOneCup.on("click", totalCost);
@@ -72,12 +78,14 @@ function show(data){
 //running store (taking the probability of selling a cup to calculate revenue)
 //calculating the ingredients factor
 const probabilityOfIngredients = () => {
-  const $lemonProbability = $('#numberOfLemons').val() * 0.03;
-  const $sugarProbability = $('#numberOfSugarCubes').val() * 0.03;
-  const $iceProbability = $('#numberOfIceCubes').val() * 0.03;
-  const ingredientsProbability = $lemonProbability + $sugarProbability + $iceProbability;
+
+    const $lemonProbability = $('#numberOfLemons').val() * 0.03;
+    const $sugarProbability = $('#numberOfSugarCubes').val() * 0.03;
+    const $iceProbability = $('#numberOfIceCubes').val() * 0.03;
+    const ingredientsProbability = $lemonProbability + $sugarProbability + $iceProbability;
   
   return (ingredientsProbability);
+
 }
 
 const priceSettingProbability = () => {
@@ -113,6 +121,8 @@ $('#calculateRevenue').click(function(){
         const widget = show(data);
 
         $('#showResults').html(widget);
+        event.stopPropagation();
+        event.preventDefault();
       
       } 
     }) 
@@ -138,8 +148,8 @@ function show(data){
 
   let totalRevenue = (weatherProbability + probabilityOfIngredients() + priceSettingProbability()) * numberOfCustomers * $priceOfACup; 
   
-    return "<h3>Congratulations! You made $" + Math.round(totalRevenue) + " today.\n" + 
-             ((weatherProbability + probabilityOfIngredients()) * numberOfCustomers) + " out of 200 customers bought a cup!" + "</h3>"
+    return "<p>Congratulations! You made $" + Math.round(totalRevenue) + " today.\n" + 
+             ((weatherProbability + probabilityOfIngredients()) * numberOfCustomers) + " out of 200 customers bought a cup!" + "</p>"
   }      
 });
 

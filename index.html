@@ -12,9 +12,10 @@
   </head>
   <body>
 
-<div class="container">
-    <button id="openModal">How to Play</button>
-     
+<button id="openModal">How to Play</button>
+
+<div class="container my-container">
+    
     <div class="container">
      <div id="modal">
       <div class="container" id="modal-textbox">
@@ -28,41 +29,36 @@
      </div>
     </div>
 
-
-   <div class="container">
-    <div class="row">
+    <div class="row justify-content-around my-row">
       
-      <div id="weatherDiv" class="col">
+      <div id="weatherDiv" class="col-md-3 my-col">
         
         <div class="row" style="margin-bottom:20px;">
-          <h3 class="text-center text-primary">Pick your favorite city!</h3>
-          <span id="error"></span>
+          <span id="error">
+          </span>
         </div>
 
         <div class="row form-group form-inline" id="rowDiv">
-          <input type ="text" name="city" id="city" class="form-control" placeholder="Search by City Name">
-          <button id="generateWeather" class="btn btn-primary">Generate Weather!</button>
+          <small class="form-text">
+            Step 1: Pick a place to generate it's weather!
+          </small>
+          <input type ="text" name="city" id="city" class="form-control" placeholder="e.g. Singapore"> 
+          
+          <button id="generateWeather" class="btn btn-success">Generate Weather!</button>
         </div>
 
         <div id="show"></div>
       </div> 
 
-      <div id="inventoryDiv" class="col">
-        <h1>Inventory</h1>
-        <button id="costOfOneCup">Cost of one cup of Lemonade</button>
-        
-        <div class="row">
-          <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
-          </h4>
-          
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div id="inventoryDiv" class="col-md-3 my-col">
+          <form class="list-group mb-3">
+            <small class="form-text">
+              Step 2: Quantify your recipe to determine its cost!
+            </small>
+            <li class="list-group-item d-flex justify-content-between">
+              
               <div>
-                <h6 class="my-0">Lemons</h6>
-                <small class="text-muted">Cost of lemons</small>
+                <small>Number of lemons <br> (per cup)</small>
               </div>
               <span>
                 <input type="number" id="numberOfLemons" class="text-muted" name="quantity" min="1" max="5" value="1">
@@ -72,59 +68,60 @@
               </span>
             </li>
             
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <li class="list-group-item d-flex justify-content-between">
               <div>
-                <h6 class="my-0">Sugar cubes</h6>
-                <small class="text-muted">Cost of sugar cubes</small>
+                <small>Number of sugar cubes <br> (per cup)</small>
               </div>
               <span>
                 <input type="number" id="numberOfSugarCubes" class="text-muted" name="quantity" min="1" max="5" value="1">
               </span>
-              <span>
-                <output type="number" class="text-muted" id="costOfSugarCubes"></output>
-              </span>
+             
             </li>
             
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <li class="list-group-item d-flex justify-content-between">
               <div>
-                <h6 class="my-0">Ice cubes</h6>
-                <small class="text-muted">Cost of ice cubes</small>
+                <small>Number of ice cubes <br> (per cup)</small>
               </div>
               <span>
                 <input type="number" id="numberOfIceCubes" class="text-muted" name="quantity" min="1" max="5" value="1">
               </span>
-              <span>
-                <output type="number" class="text-muted" id="costOfIceCubes"></output>
-              </span>
-            </li>
   
-            <li class="list-group-item d-flex justify-content-between">
-              <span id="totalCost">Total (USD)</span>
             </li>
-          </ul>
-          </div>
-        </div>
-      </div>  
 
-      <div id="storeDiv" class="col">
-        <h1>Store</h1>
-        <div class="row" style="margin-bottom:20px;">
-        <h3 class="text-center text-primary"></h3>
-        <span id="errorStore"></span>
-        </div>
-
-        <span> Set price of a cup
-          <input type="number" id="priceSetting" class="text-muted" name="quantity" min="1" max="2" value="1" step="0.1">
-        </span>
-
-        <div class="row form-group form-inline" id="storeDiv">
-        <button id="calculateRevenue">Run Store!</button>
+            <button id="costOfOneCup">Cost of one cup of Lemonade</button>
+              
+              <span>Total (SGD) $</span>
+              <span id="totalCost"></span>
+              
+          </form>
         </div>
       
-        <div id="showResults"></div>
+
+      <div id="storeDiv" class="col-md-3 my-col">
+        
+       <form class="list-group">
+        <small class="form-text">
+          Step 3: Set your price before opening your store!      
+        </small>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+         <div> 
+           <small>Set price of a cup</small>
+         </div>
+         <span>
+          <input type="number" id="priceSetting" class="text-muted" name="quantity" min="1" max="2" value="1" step="0.1">
+         </span>
+        </li>
+      
+         <div class="row form-group form-inline" id="storeDiv">
+          <button id="calculateRevenue">Run Store!</button>
+         </div>
+      
+         <div id="showResults"></div>
+        
+       </form>
       </div>
     </div>
-   </div>
+   
 </div>  
 
     <script
@@ -132,7 +129,7 @@
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"
     ></script>
-    
+ 
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="javascript/index.js"></script>
   </body>

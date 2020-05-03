@@ -1,22 +1,34 @@
 body {
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-  }
-  
-  #modal {
-    background-color: rgba(0, 0, 0, 0.4);
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
-    /*This puts our modal in front of the body (which has a default z-index setting of `0`*/
-    overflow: auto;
-    /*If overflow is clipped, a scroll-bar should be added to see the rest of the content*/
-    display: none;
-    /*Set this to `none` so that the modal does not show initially on page load.*/
+  margin: 30px;
+
+}
+
+.my-container {
+  border: 1px solid green;
+  justify-content: space-around;
+  margin: auto;
+}
+
+.my-row {
+  border: 3 px solid red;
+}
+
+.my-col {
+  border: 10 px solid blue;
+  padding: -2px;
+}
+
+#modal {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: auto;
+  display: none;
+    
   }
   
   #modal-textbox {
@@ -25,9 +37,7 @@ body {
     width: 550px;
     border-radius: 2px;
     margin: 150px auto;
-    /*This will set the margins for the top and the bottom to 150px (or larger). The right and left will automatically set themselves (and keep the box centered horizontally).*/
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-    /*This will give the box some depth.*/
     padding: 2%;
     line-height: 120%;
     font-family: Arial;
@@ -36,11 +46,25 @@ body {
   #modal-footer {
     text-align: right;
   }
-  
+
+
   h1 {
     padding-bottom: 15px;
   }
+
+  #show {
+    font-size: 15px;
+    font-weight: bold;
+  }
   
+  #showResults {
+    font-size: 15px;
+  }
+
+  #totalCost {
+    font-size: 15px;
+  }
+
   #tooltip {
     background-color: white;
     color: black;
@@ -62,16 +86,17 @@ body {
   transform: rotate(45deg);
   background: #333;
 
-
 }
 
-#part_2 {
-  width: 75%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  padding: 0;
-  justify-content: space-between;
-  background-color: blue;
+#openModal {
+  margin-left: 80px;
+}
+
+#calculateRevenue {
+  margin-left: 15px;
+}
+
+#numberOfLemons {
+  margin-left: 35px;
 
 }
